@@ -1,25 +1,21 @@
-const Sequlize = require('sequelize');
-const sequlize = require(../utils/database);
+const Sequelize = require('sequelize')
+const sequelize = require('../utils/database')
 
-const todo = sequlize.define('Todo', {
+const todo = sequelize.define('Todo', {
     id: {
         primaryKey: true,
         autoIncrement: true,
         allowNull: false,
-        type: Sequlize.INTEGER
+        type: Sequelize.INTEGER
     },
     done: {
-        type: Sequlize.BOOLEAN,
+        type: Sequelize.BOOLEAN,
         allowNull: false
     },
     title: {
-        type: Sequlize.STRING,
-        allowNull: false
-    },
-    data:{
-        type: Sequlize.DATE,
+        type: Sequelize.STRING,
         allowNull: false
     }
-});
+})
 
-module.exports = todo;
+module.exports = todo
