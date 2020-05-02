@@ -74,6 +74,7 @@
                                         <v-checkbox
                                                 v-if="!todo.done"
                                                 v-model="todo.done"
+                                                @change="completeTodo(todo.id)"
                                                 :dark="isDark"
                                         ></v-checkbox>
                                     </v-list-tile-action>
@@ -101,6 +102,6 @@
 
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vuetify@1.5.24/dist/vuetify.js"></script>
-<script src="app,js"></script>
+<script src="app.js"></script>
 </body>
 </html>
