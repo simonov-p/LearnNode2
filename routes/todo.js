@@ -47,8 +47,22 @@ router.put('/:id', async (req, res) => {
 });
 
 // Удаление задачи
-router.delete(':id', (req, res) => {
-
+router.delete('/:id', async (req, res) => {
+    try {
+        const todos = await Todo.findAll({
+            where: {
+                id: +req.params.id
+            }
+        });
+        const todo = todos[0];
+        await todo.destroy();
+        res.status(204).json({});
+    } catch (e) {
+        console.log(e);
+        res.status(500).json({
+            message: 'Server error'
+        })
+    }
 });
 
 module.exports = router;

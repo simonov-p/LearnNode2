@@ -39,7 +39,14 @@ new Vue({
                 .catch(e => console.log(e))
         },
         removeTodo(id) {
-            this.todos = this.todos.filter(t => t.id !== id)
+            fetch('/api/todo/' + id, {
+                method: 'delete'
+            })
+                .then(() => {
+                this.todos = this.todos.filter(t => t.id != id)
+                })
+                .catch(e => console.log(e));
+            // this.todos = this.todos.filter(t => t.id !== id)
         },
         completeTodo(id) {
             fetch('/api/todo/' + id, {
@@ -49,7 +56,7 @@ new Vue({
             })
                 .then(res => res.json())
                 .then(({todo}) => {
-                    const idx = this.todos.findIndex(t => t.id === todo.id)
+                    const idx = this.todos.findIndex(t => t.id === todo.id);
                     this.todos[idx].updatedAt = todo.updatedAt
                 })
                 .catch(e => console.log(e))
