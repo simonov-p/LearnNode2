@@ -1,4 +1,4 @@
-const Todo = require('../modules/todo')
+const Todo = require('../modules/todo');
 
 const users = [
     {name: 'Igor', age: 33, email: 'igor@gmail.com'},
@@ -29,7 +29,7 @@ module.exports = {
         users.push(user);
         return user;
     },
-    async getTodos(){
+    async getTodos() {
         try {
             return await Todo.findAll()
         } catch (e) {
@@ -38,7 +38,7 @@ module.exports = {
     },
     async createTodo({todo}) {
         try {
-            return  await Todo.create({
+            return await Todo.create({
                 title: todo.title,
                 done: false
             });
@@ -54,6 +54,18 @@ module.exports = {
             return todo;
         } catch (e) {
             throw new Error('id is required')
+        }
+    },
+    async deleteTodo({id}) {
+        try {
+            const todos = await Todo.findAll({
+                where: {id}
+            });
+            await todos[0].destroy();
+            return true;
+        } catch (e) {
+            throw new Error('id is required');
+            return false
         }
     }
 };
